@@ -9,7 +9,7 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Graphics;
 
 namespace GenericViewBug;
-public static partial class ColorAnimationExtensions_EnumPicker
+public static partial class ColorAnimationExtensions_MultipleArgsPicker
 {
     /// <summary>
     /// Animates the TextColor of an <see cref="Microsoft.Maui.ITextStyle"/> to the given color
@@ -20,7 +20,9 @@ public static partial class ColorAnimationExtensions_EnumPicker
     /// <param name="length">The duration, in milliseconds, of the animation</param>
     /// <param name="easing">The easing function to be used in the animation</param>
     /// <returns>Value indicating if the animation completed successfully or not</returns>
-    public static Task<bool> TextColorTo(this GenericViewBug.EnumPicker element, Color color, uint rate = 16u, uint length = 250u, Easing? easing = null)
+    public static Task<bool> TextColorTo<TA, TB, TC, TD, TE, TF, TG, TH, TI, TJ, TK>(this GenericViewBug.MultipleArgsPicker<TA, TB, TC, TD, TE, TF, TG, TH, TI, TJ, TK> element, Color color, uint rate = 16u, uint length = 250u, Easing? easing = null)
+        where TA : notnull, IMyInterface where TB : class where TC : struct where TD : class, IMyInterface, new()
+        where TF : notnull where TG : unmanaged where TH : IMyInterface? where TI : class where TJ : IMyInterface where TK : new()
     {
         ArgumentNullException.ThrowIfNull(element);
         ArgumentNullException.ThrowIfNull(color);
@@ -38,14 +40,14 @@ public static partial class ColorAnimationExtensions_EnumPicker
         {
             //When creating an Animation too early in the lifecycle of the Page, i.e. in the OnAppearing method,
             //the Page might not have an 'IAnimationManager' yet, resulting in an ArgumentException.
-            System.Diagnostics.Debug.WriteLine($"{aex.GetType().Name} thrown in {typeof(ColorAnimationExtensions_EnumPicker).FullName}: {aex.Message}");
+            System.Diagnostics.Debug.WriteLine($"{aex.GetType().Name} thrown in {typeof(ColorAnimationExtensions_MultipleArgsPicker).FullName}: {aex.Message}");
             animationCompletionSource.SetResult(false);
         }
 
         return animationCompletionSource.Task;
-        static Animation GetRedTransformAnimation(GenericViewBug.EnumPicker element, float targetRed) => new(v => element.TextColor = element.TextColor.WithRed(v), element.TextColor.Red, targetRed);
-        static Animation GetGreenTransformAnimation(GenericViewBug.EnumPicker element, float targetGreen) => new(v => element.TextColor = element.TextColor.WithGreen(v), element.TextColor.Green, targetGreen);
-        static Animation GetBlueTransformAnimation(GenericViewBug.EnumPicker element, float targetBlue) => new(v => element.TextColor = element.TextColor.WithBlue(v), element.TextColor.Blue, targetBlue);
-        static Animation GetAlphaTransformAnimation(GenericViewBug.EnumPicker element, float targetAlpha) => new(v => element.TextColor = element.TextColor.WithAlpha((float)v), element.TextColor.Alpha, targetAlpha);
+        static Animation GetRedTransformAnimation(GenericViewBug.MultipleArgsPicker<TA, TB, TC, TD, TE, TF, TG, TH, TI, TJ, TK> element, float targetRed) => new(v => element.TextColor = element.TextColor.WithRed(v), element.TextColor.Red, targetRed);
+        static Animation GetGreenTransformAnimation(GenericViewBug.MultipleArgsPicker<TA, TB, TC, TD, TE, TF, TG, TH, TI, TJ, TK> element, float targetGreen) => new(v => element.TextColor = element.TextColor.WithGreen(v), element.TextColor.Green, targetGreen);
+        static Animation GetBlueTransformAnimation(GenericViewBug.MultipleArgsPicker<TA, TB, TC, TD, TE, TF, TG, TH, TI, TJ, TK> element, float targetBlue) => new(v => element.TextColor = element.TextColor.WithBlue(v), element.TextColor.Blue, targetBlue);
+        static Animation GetAlphaTransformAnimation(GenericViewBug.MultipleArgsPicker<TA, TB, TC, TD, TE, TF, TG, TH, TI, TJ, TK> element, float targetAlpha) => new(v => element.TextColor = element.TextColor.WithAlpha((float)v), element.TextColor.Alpha, targetAlpha);
     }
 }

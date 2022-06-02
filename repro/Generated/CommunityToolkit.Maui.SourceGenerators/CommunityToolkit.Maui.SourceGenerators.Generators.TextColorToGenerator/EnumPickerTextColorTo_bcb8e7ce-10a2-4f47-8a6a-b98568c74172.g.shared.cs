@@ -20,7 +20,8 @@ public static partial class ColorAnimationExtensions_EnumPicker
     /// <param name = "length">The duration, in milliseconds, of the animation</param>
     /// <param name = "easing">The easing function to be used in the animation</param>
     /// <returns>Value indicating if the animation completed successfully or not</returns>
-    public static Task<bool> TextColorTo(this GenericViewBug.EnumPicker element, Color color, uint rate = 16u, uint length = 250u, Easing? easing = null)
+    public static Task<bool> TextColorTo<T>(this GenericViewBug.EnumPicker<T> element, Color color, uint rate = 16u, uint length = 250u, Easing? easing = null)
+        where T : Enum
     {
         ArgumentNullException.ThrowIfNull(element);
         ArgumentNullException.ThrowIfNull(color);
@@ -43,9 +44,9 @@ public static partial class ColorAnimationExtensions_EnumPicker
         }
 
         return animationCompletionSource.Task;
-        static Animation GetRedTransformAnimation(GenericViewBug.EnumPicker element, float targetRed) => new(v => element.TextColor = element.TextColor.WithRed(v), element.TextColor.Red, targetRed);
-        static Animation GetGreenTransformAnimation(GenericViewBug.EnumPicker element, float targetGreen) => new(v => element.TextColor = element.TextColor.WithGreen(v), element.TextColor.Green, targetGreen);
-        static Animation GetBlueTransformAnimation(GenericViewBug.EnumPicker element, float targetBlue) => new(v => element.TextColor = element.TextColor.WithBlue(v), element.TextColor.Blue, targetBlue);
-        static Animation GetAlphaTransformAnimation(GenericViewBug.EnumPicker element, float targetAlpha) => new(v => element.TextColor = element.TextColor.WithAlpha((float)v), element.TextColor.Alpha, targetAlpha);
+        static Animation GetRedTransformAnimation(GenericViewBug.EnumPicker<T> element, float targetRed) => new(v => element.TextColor = element.TextColor.WithRed(v), element.TextColor.Red, targetRed);
+        static Animation GetGreenTransformAnimation(GenericViewBug.EnumPicker<T> element, float targetGreen) => new(v => element.TextColor = element.TextColor.WithGreen(v), element.TextColor.Green, targetGreen);
+        static Animation GetBlueTransformAnimation(GenericViewBug.EnumPicker<T> element, float targetBlue) => new(v => element.TextColor = element.TextColor.WithBlue(v), element.TextColor.Blue, targetBlue);
+        static Animation GetAlphaTransformAnimation(GenericViewBug.EnumPicker<T> element, float targetAlpha) => new(v => element.TextColor = element.TextColor.WithAlpha((float)v), element.TextColor.Alpha, targetAlpha);
     }
 }

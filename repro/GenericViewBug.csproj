@@ -55,9 +55,9 @@
 		<Compile Remove="$(GeneratedFolder)/**/*.cs" />
 
 	</ItemGroup>
-	<ItemGroup>
-		<!--	<PackageReference Include="CommunityToolkit.Maui" Version="1.0.0-rc3" />-->
-	</ItemGroup>
+	<!--<ItemGroup>
+			<PackageReference Include="CommunityToolkit.Maui" Version="1.0.0" />
+	</ItemGroup>-->
 	<ItemGroup>
 	  <ProjectReference Include="..\ctk-maui\src\CommunityToolkit.Maui\CommunityToolkit.Maui.csproj" />
 	  <ProjectReference Include="..\ctk-maui\src\CommunityToolkit.Maui.Core\CommunityToolkit.Maui.Core.csproj" />

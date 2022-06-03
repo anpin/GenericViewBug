@@ -15,16 +15,11 @@ namespace GenericViewBug
 	public partial class MainPage : global::Microsoft.Maui.Controls.ContentPage
 	{
 		[global::System.CodeDom.Compiler.GeneratedCode("Microsoft.Maui.Controls.SourceGen", "1.0.0.0")]
-		private global::Microsoft.Maui.Controls.Button CounterBtn;
-
-		[global::System.CodeDom.Compiler.GeneratedCode("Microsoft.Maui.Controls.SourceGen", "1.0.0.0")]
 #if NET5_0_OR_GREATER
-		[global::System.Diagnostics.CodeAnalysis.MemberNotNullAttribute(nameof(CounterBtn))]
 #endif
 		private void InitializeComponent()
 		{
 			global::Microsoft.Maui.Controls.Xaml.Extensions.LoadFromXaml(this, typeof(MainPage));
-			CounterBtn = global::Microsoft.Maui.Controls.NameScopeExtensions.FindByName<global::Microsoft.Maui.Controls.Button>(this, "CounterBtn");
 		}
 	}
 }
